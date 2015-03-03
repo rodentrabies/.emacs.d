@@ -49,7 +49,6 @@
 (require 'init-paredit)
 (require 'init-haskell)
 (require 'init-rust)
-;(require 'init-scala)
 (require 'init-ruby)
 (require 'init-python)
 ;;;-----------------------------------------------------------------------------

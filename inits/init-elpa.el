@@ -3,7 +3,7 @@
 ;;;-----------------------------------------------------------------------------
 (defun require-package (package)
   (if (package-installed-p package)
-      t
+      (require package)
     (progn
       (package-refresh-contents)
       (package-install package)
