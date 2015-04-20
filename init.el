@@ -23,7 +23,9 @@
 
 ;; default theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'gruvbox t) 
+(load-theme 'jazz t)
+;; powerline
+(require 'powerline)
 
 ;; font settings
 (set-face-attribute 'default nil :height 100)
