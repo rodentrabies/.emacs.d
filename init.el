@@ -23,12 +23,17 @@
 
 ;; default theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'jazz t)
+(load-theme 'gotham t)
 ;; powerline
 (require 'powerline)
 
 ;; font settings
-(set-face-attribute 'default nil :height 100)
+(set-face-attribute 'default nil
+                    ;; :family "Source Code Pro"
+                    ;; :height 105
+		    ;; :weight 'regular
+		    ;; :width 'expanded
+		    )
 
 ;; dynamic abbreviation 
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
@@ -46,13 +51,14 @@
 ;;;-----------------------------------------------------------------------------
 ;;; initialize modules
 ;;;-----------------------------------------------------------------------------
-(require 'init-elpa)
+(require 'init-packages)
 (require 'init-common-lisp)
 (require 'init-paredit)
 (require 'init-haskell)
-(require 'init-rust)
-(require 'init-ruby)
-(require 'init-python)
+(require 'init-clojure)
+;; (require 'init-rust)
+;; (require 'init-ruby)
+;; (require 'init-python)
 ;;;-----------------------------------------------------------------------------
 
 (provide 'init)
