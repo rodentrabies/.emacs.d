@@ -6,35 +6,19 @@
 (let ((default-directory "~/.emacs.d/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+
+;;;-----------------------------------------------------------------------------
+;;; initialize general settings
+;;;-----------------------------------------------------------------------------
+(require 'utilities)
+(require 'init-packages)
+(require 'init-appearance)
+;;;-----------------------------------------------------------------------------
+
+
 ;;;-----------------------------------------------------------------------------
 ;;; general settings
 ;;;-----------------------------------------------------------------------------
-;; remove window elements
-(tool-bar-mode -1) ; no toolbar
-(menu-bar-mode -1) ; no menu
-(scroll-bar-mode -1) ; no scrollbar
-(setq inhibit-splash-screen t) ; no splash screen
-
-;; metainfo
-(add-hook 'prog-mode-hook
-	  '(lambda ()
-	     (linum-mode 1) ; line numbers
-	     (column-number-mode 1)))  ; column number in the state-line
-
-;; default theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'gotham t)
-;; powerline
-(require 'powerline)
-
-;; font settings
-(set-face-attribute 'default nil
-                    ;; :family "Source Code Pro"
-                    ;; :height 105
-		    ;; :weight 'regular
-		    ;; :width 'expanded
-		    )
-
 ;; dynamic abbreviation 
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
@@ -49,15 +33,14 @@
 
 
 ;;;-----------------------------------------------------------------------------
-;;; initialize modules
+;;; initialize language modules
 ;;;-----------------------------------------------------------------------------
-(require 'init-packages)
 (require 'init-common-lisp)
 (require 'init-paredit)
 (require 'init-haskell)
 (require 'init-clojure)
-;; (require 'init-rust)
-;; (require 'init-ruby)
+(require 'init-cpp)
+(require 'init-lfe)
 ;; (require 'init-python)
 ;;;-----------------------------------------------------------------------------
 
