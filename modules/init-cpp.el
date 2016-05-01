@@ -3,17 +3,6 @@
 ;;;-----------------------------------------------------------------------------
 (require 'utilities)
 (require 'electric)
-;; (require-package 'smartparens)
-;; (require 'smartparens-config)
-
-(defun brace-autoindent ()
-  (when (and (eq major-mode 'c++-mode) (looking-back "[{]"))
-    (newline-and-indent)
-    (newline-and-indent)
-    (previous-line)
-    (indent-for-tab-command)))
-
-(add-hook 'post-self-insert-hook 'brace-autoindent)
 
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 

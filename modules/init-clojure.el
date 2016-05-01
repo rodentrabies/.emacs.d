@@ -17,8 +17,6 @@
 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
-;; TODO: implement wrap-swap function
-
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'cider-mode))
 (eval-after-load "auto-complete"
