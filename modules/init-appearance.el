@@ -28,6 +28,7 @@
 
 ;; ido
 (require-package 'ido)
+(setq ido-default-buffer-method 'selected-window)
 (ido-mode t)
 
 ;; dynamic abbreviation 

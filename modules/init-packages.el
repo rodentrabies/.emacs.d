@@ -3,10 +3,10 @@
 ;;;-----------------------------------------------------------------------------
 (require 'package)
 
-(add-to-list 'package-archives
-	     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
-(add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa/"))
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("marmalade" . "https://marmalade-repo.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 
