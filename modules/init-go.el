@@ -1,13 +1,7 @@
 ;;;-----------------------------------------------------------------------------
-;;; python
+;;; golang
 ;;;-----------------------------------------------------------------------------
-(require-package 'elpy)
+(require-package 'go-mode)
 
-;; smartparens
-(require-package 'smartparens)
-(add-hook 'python-mode-hook 'smartparens-mode)
-
-(elpy-enable)
 ;;;-----------------------------------------------------------------------------
-
-(provide 'init-python)
+(provide 'init-go)

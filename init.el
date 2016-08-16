@@ -13,6 +13,7 @@
 (require 'utilities)
 (require 'init-packages)
 (require 'init-appearance)
+(require 'init-paredit) 
 ;;;-----------------------------------------------------------------------------
 
 
@@ -35,13 +36,12 @@
 ;;;-----------------------------------------------------------------------------
 ;;; initialize language modules
 ;;;-----------------------------------------------------------------------------
-(require 'init-common-lisp)
-(require 'init-paredit)
+(require 'init-python)      ; IDE
+(require 'init-go)          ; IDE
+(require 'init-common-lisp) ; IDE
+(require 'init-clojure)     ; IDE
 (require 'init-haskell)
-(require 'init-clojure)
 (require 'init-cpp)
-(require 'init-lfe)
-;; (require 'init-python)
 ;;;-----------------------------------------------------------------------------
 
 (provide 'init)
