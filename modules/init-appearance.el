@@ -16,7 +16,7 @@
 
 ;; default theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'gotham t)
+(load-theme 'gruvbox t)
 
 ;; powerline
 (require 'powerline)

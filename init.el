@@ -40,6 +40,7 @@
 (require 'init-go)          ; IDE
 (require 'init-common-lisp) ; IDE
 (require 'init-clojure)     ; IDE
+(require 'init-rust)
 (require 'init-haskell)
 (require 'init-cpp)
 ;;;-----------------------------------------------------------------------------

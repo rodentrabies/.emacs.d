@@ -2,18 +2,22 @@
 ;;; rust
 ;;;-----------------------------------------------------------------------------
 (require-package 'rust-mode)
+(require-package 'racer)
+
+(setq racer-rust-src-path "/home/whythat/00_util/rust/src/")
 
 ;; smartparens
 (require-package 'smartparens)
 (add-hook 'rust-mode-hook 'smartparens-mode)
 
-;; RACER
-;; todo
-;(setq racer-rust-src-path "~/.emacs.d/racer/src/")
-;(setq racer-cmd "~/.emacs.d/racer/target/release/racer")
-;(add-to-list 'load-path "~/.emacs.d/racer/editors")
-;(eval-after-load "rust-mode" '(require 'racer))
+;; hooks
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
 
+(add-hook 'racer-mode-hook #'company-mode)
+
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
 ;;;-----------------------------------------------------------------------------
 
 (provide 'init-rust)

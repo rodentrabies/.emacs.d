@@ -17,10 +17,9 @@
 
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-mode))
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-repl-mode))
+(with-eval-after-load "auto-complete"
+  (add-to-list 'ac-modes 'cider-mode)
+  (add-to-list 'ac-modes 'cider-repl-mode))
 ;;;-----------------------------------------------------------------------------
 
 (provide 'init-clojure)

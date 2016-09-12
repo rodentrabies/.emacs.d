@@ -8,12 +8,14 @@
 
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 
-(setq c-default-style "k&r"
-      c-basic-offset 4)
+(defun cpp-setup ()
+  (setq c-default-style "k&r"
+        c-basic-offset 4)
+  (electric-pair-mode 1)
+  (cmake-ide-setup)
+  (electric-pair-mode 1))
 
-(add-hook 'c++-mode-hook 'electric-pair-mode)
-(add-hook 'c++-mode-hook 'cmake-ide-setup)
-(add-hook 'c++-mode-hook 'electric-pair-mode)
+(add-hook 'c++-mode-hook 'cpp-setup)
 ;;;-----------------------------------------------------------------------------
 
 (provide 'init-cpp)
