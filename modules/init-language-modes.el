@@ -30,14 +30,11 @@
 (el-get-bundle go-autocomplete)
 
 (defun go-mode-custom-hook ()
-  ;; path to go commands
   (add-to-list 'exec-path "~/01_code/go/bin")
-  ;; format with gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
-  ;; jump to definition via M-.
   (local-set-key (kbd "M-.") 'godef-jump)
-  ;; enable autocomplete
-  (auto-complete-mode 1))
+  (auto-complete-mode 1)
+  (electric-pair-mode 1))
 
 (add-hook 'go-mode-hook 'go-mode-custom-hook)
 ;;;-----------------------------------------------------------------------------

@@ -3,17 +3,28 @@
 ;;;;----------------------------------------------------------------------------
 
 
-;; default theme
-(el-get-bundle gruvbox-theme
-  :url "https://raw.githubusercontent.com/greduan/emacs-theme-gruvbox/master/gruvbox-theme.el"
+;; themes
+
+;; (el-get-bundle gruvbox-theme
+;;   :url "https://github.com/greduan/emacs-theme-gruvbox.git"
+;;   (add-to-list 'custom-theme-load-path default-directory)
+;;   (load-theme 'gruvbox t))
+
+;; (el-get-bundle arjen-grey-theme
+;;   :url "https://github.com/credmp/arjen-grey-theme.git"
+;;   (add-to-list 'custom-theme-load-path default-directory)
+;;   (load-theme 'arjen-grey t))
+
+(el-get-bundle deep-thought-theme
+  :url "https://github.com/yurizhykin/emacs-deep-thought-theme.git"
   (add-to-list 'custom-theme-load-path default-directory)
-  (load-theme 'gruvbox t))
+  (load-theme 'deep-thought t))
 
 
 ;; powerline
 (el-get-bundle! powerline
   :url "https://github.com/jonathanchu/emacs-powerline.git"
-  (set-face-attribute 'mode-line nil :background "grey10" :box nil))
+  (set-face-attribute 'mode-line nil :background "#1F0093 " :box nil))
 
 
 ;; font settings
@@ -21,6 +32,8 @@
 (set-frame-font
  "-apple-Monaco-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1" nil t)
 
+;; fireplace :)
+(el-get-bundle fireplace)
 
 ;; ido
 (require 'ido)
