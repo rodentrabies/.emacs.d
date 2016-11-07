@@ -10,21 +10,32 @@
 ;;   (add-to-list 'custom-theme-load-path default-directory)
 ;;   (load-theme 'gruvbox t))
 
-;; (el-get-bundle arjen-grey-theme
-;;   :url "https://github.com/credmp/arjen-grey-theme.git"
+;; (el-get-bundle deep-thought-theme
+;;   :url "https://github.com/yurizhykin/emacs-deep-thought-theme.git"
 ;;   (add-to-list 'custom-theme-load-path default-directory)
-;;   (load-theme 'arjen-grey t))
+;;   (load-theme 'deep-thought t))
 
-(el-get-bundle deep-thought-theme
-  :url "https://github.com/yurizhykin/emacs-deep-thought-theme.git"
+(el-get-bundle lime-theme
+  :url "https://github.com/yurizhykin/emacs-lime-theme.git"
   (add-to-list 'custom-theme-load-path default-directory)
-  (load-theme 'deep-thought t))
-
+  (load-theme 'lime t))
 
 ;; powerline
 (el-get-bundle! powerline
-  :url "https://github.com/jonathanchu/emacs-powerline.git"
-  (set-face-attribute 'mode-line nil :background "#1F0093 " :box nil))
+  :url "https://github.com/milkypostman/emacs-powerline.git")
+
+(el-get-bundle! airline-themes
+  :depends (evil)
+  (load-theme 'airline-luna t)
+  (setq powerline-utf-8-separator-left        #xe0b0
+        powerline-utf-8-separator-right       #xe0b2
+        airline-utf-glyph-separator-left      #xe0b0
+        airline-utf-glyph-separator-right     #xe0b2
+        airline-utf-glyph-subseparator-left   #xe0b1
+        airline-utf-glyph-subseparator-right  #xe0b3
+        airline-utf-glyph-branch              #xe0a0
+        airline-utf-glyph-readonly            #xe0a2
+        airline-utf-glyph-linenumber          #xe0a1))
 
 
 ;; font settings
@@ -33,7 +44,8 @@
  "-apple-Monaco-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1" nil t)
 
 ;; fireplace :)
-(el-get-bundle fireplace)
+(el-get-bundle fireplace
+  :url "https://github.com/johanvts/emacs-fireplace.git")
 
 ;; ido
 (require 'ido)

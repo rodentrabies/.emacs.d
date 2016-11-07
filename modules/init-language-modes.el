@@ -29,12 +29,16 @@
 (el-get-bundle exec-path-from-shell)
 (el-get-bundle go-autocomplete)
 
+(defun go-mode-add-custom-keys ()
+  (local-set-key (kbd "C-;") (lambda () (interactive) (insert " := "))))
+
 (defun go-mode-custom-hook ()
   (add-to-list 'exec-path "~/01_code/go/bin")
   (add-hook 'before-save-hook 'gofmt-before-save)
   (local-set-key (kbd "M-.") 'godef-jump)
   (auto-complete-mode 1)
-  (electric-pair-mode 1))
+  (electric-pair-mode 1)
+  (go-mode-add-custom-keys))
 
 (add-hook 'go-mode-hook 'go-mode-custom-hook)
 ;;;-----------------------------------------------------------------------------
@@ -47,7 +51,7 @@
 ;;;-----------------------------------------------------------------------------
 (el-get-bundle! slime
   :features slime-autoloads
-  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  (setq inferior-lisp-program "/usr/bin/sbcl")
   (setq slime-contribs '(slime-fancy))
   (slime-setup))
 ;;;-----------------------------------------------------------------------------
@@ -70,10 +74,10 @@
 (el-get-bundle cider)
 (el-get-bundle auto-complete)
 (el-get-bundle ac-cider)
-(el-get-bundle clj-refactor)
+;; (el-get-bundle clj-refactor)
 (el-get-bundle company)
 
-(defun cider-custom-hook ()
+(defun cider-mode-custom-hook ()
   (ac-flyspell-workaround)
   (ac-cider-setup)
   (company-mode))
@@ -94,23 +98,23 @@
 ;;; rust
 ;;;-----------------------------------------------------------------------------
 (el-get-bundle! rust-mode
-  :url "https://github.com/rust-lang/rust-mode"
-  :type github)
+  :url "https://github.com/rust-lang/rust-mode.git")
 
 (el-get-bundle! racer)
 
-(setq racer-rust-src-path "/home/whythat/00_util/rust/src/")
+(el-get-bundle rustfmt
+  :url "https://github.com/fbergroth/emacs-rustfmt.git")
 
-;; smartparens
-(add-hook 'rust-mode-hook 'smartparens-mode)
+(setq racer-rust-src-path "/home/whythat/00_util/rust/src/")
 
 ;; hooks
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'rust-mode-hook 'smartparens-mode)
+;; (add-hook 'rust-mode-hook 'rustfmt-enable-on-save)
 
 (add-hook 'racer-mode-hook #'company-mode)
 
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
 ;;;-----------------------------------------------------------------------------
 
@@ -119,7 +123,7 @@
 ;;; haskell
 ;;;-----------------------------------------------------------------------------
 (el-get-bundle! haskell-mode)
-(el-get-bundle! ghc)
+(el-get-bundle ghc)
 (el-get-bundle! company-ghc)
 (el-get-bundle! company)
 
@@ -151,6 +155,18 @@
 
 (add-hook 'c++-mode-hook 'cpp-setup)
 ;;;-----------------------------------------------------------------------------
+
+
+
+
+;;;-----------------------------------------------------------------------------
+;;; misc
+;;;-----------------------------------------------------------------------------
+(el-get-bundle protobuf-mode)
+
+(el-get-bundle magit)
+;;;-----------------------------------------------------------------------------
+
 
 
 
