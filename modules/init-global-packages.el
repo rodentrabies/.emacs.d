@@ -52,6 +52,13 @@
 (setq ido-default-buffer-method 'selected-window)
 (ido-mode t)
 
+;; minimap
+(el-get-bundle minimap)
+(add-hook 'minimap-sb-mode-hook
+          (lambda ()
+            (set-face-background 'minimap-active-region-background "dark olive green")
+            (setq mode-line-format nil)))
+
 
 ;; paredit
 (el-get-bundle! paredit

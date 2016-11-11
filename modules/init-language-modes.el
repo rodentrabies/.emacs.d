@@ -34,6 +34,7 @@
 
 (defun go-mode-custom-hook ()
   (add-to-list 'exec-path "~/01_code/go/bin")
+  (setq gofmt-command "goimports")
   (add-hook 'before-save-hook 'gofmt-before-save)
   (local-set-key (kbd "M-.") 'godef-jump)
   (auto-complete-mode 1)
