@@ -33,7 +33,7 @@
   (local-set-key (kbd "C-;") (lambda () (interactive) (insert " := "))))
 
 (defun go-mode-custom-hook ()
-  (add-to-list 'exec-path "~/01_code/go/bin")
+  (add-to-list 'exec-path (concat (getenv "GOPATH") "/bin"))
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook 'gofmt-before-save)
   (local-set-key (kbd "M-.") 'godef-jump)
