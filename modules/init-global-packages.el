@@ -59,6 +59,7 @@
             (set-face-background 'minimap-active-region-background "dark olive green")
             (setq mode-line-format nil)))
 
+(el-get-bundle markdown-mode)
 
 ;; paredit
 (el-get-bundle! paredit

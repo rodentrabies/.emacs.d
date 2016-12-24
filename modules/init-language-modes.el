@@ -30,16 +30,34 @@
 (el-get-bundle go-autocomplete)
 
 (defun go-mode-add-custom-keys ()
-  (local-set-key (kbd "C-;") (lambda () (interactive) (insert " := "))))
+  ;; insert initialization operator `:='
+  (local-set-key
+   (kbd "C-;")
+   (lambda ()
+     (interactive)
+     (unless (char-equal (char-before) ?\s)
+       (insert " "))
+     (insert ":= ")))
+
+  ;; insert 'standard' error handler
+  ;; if err != nil {
+  ;;       return err
+  ;; }
+  (local-set-key
+   (kbd "C-M-;")
+   (lambda ()
+     (interactive)
+     (insert "if err != nil { return err }")))
+
+  (local-set-key (kbd "M-.") 'godef-jump))
 
 (defun go-mode-custom-hook ()
   (add-to-list 'exec-path (concat (getenv "GOPATH") "/bin"))
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook 'gofmt-before-save)
-  (local-set-key (kbd "M-.") 'godef-jump)
+  (go-mode-add-custom-keys)
   (auto-complete-mode 1)
-  (electric-pair-mode 1)
-  (go-mode-add-custom-keys))
+  (electric-pair-mode 1))
 
 (add-hook 'go-mode-hook 'go-mode-custom-hook)
 ;;;-----------------------------------------------------------------------------
