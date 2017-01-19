@@ -40,8 +40,7 @@
 
 ;; font settings
 (setq-default indent-tabs-mode nil)
-(set-frame-font
- "-apple-Monaco-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1" nil t)
+(set-frame-font "Monaco-10:weight=bold" nil t)
 
 ;; fireplace :)
 (el-get-bundle fireplace

@@ -41,13 +41,15 @@
 
   ;; insert 'standard' error handler
   ;; if err != nil {
-  ;;       return err
+  ;;       >point here<
   ;; }
   (local-set-key
    (kbd "C-M-;")
    (lambda ()
      (interactive)
-     (insert "if err != nil { return err }")))
+     (insert "if err != nil {}")
+     (backward-char)
+     (newline-and-indent)))
 
   (local-set-key (kbd "M-.") 'godef-jump))
 
@@ -57,7 +59,8 @@
   (add-hook 'before-save-hook 'gofmt-before-save)
   (go-mode-add-custom-keys)
   (auto-complete-mode 1)
-  (electric-pair-mode 1))
+  (electric-pair-mode 1)
+  (go-guru-hl-identifier-mode))
 
 (add-hook 'go-mode-hook 'go-mode-custom-hook)
 ;;;-----------------------------------------------------------------------------
@@ -124,7 +127,8 @@
 (el-get-bundle rustfmt
   :url "https://github.com/fbergroth/emacs-rustfmt.git")
 
-(setq racer-rust-src-path "/home/whythat/00_util/rust/src/")
+(setq racer-rust-src-path
+      "/home/whythat/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
 ;; hooks
 (add-hook 'rust-mode-hook #'racer-mode)
