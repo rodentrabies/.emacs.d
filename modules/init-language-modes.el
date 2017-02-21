@@ -11,12 +11,16 @@
   (elpy-enable))
 
 (el-get-bundle smartparens)
+(el-get-bundle flycheck)
+(el-get-bundle! py-autopep8)
 
 (defun python-mode-custom-hook ()
   (smartparens-mode 1)
   (highlight-indentation-mode 0))
 
 (add-hook 'python-mode-hook 'python-mode-custom-hook)
+(add-hook 'elpy-mode-hook 'flycheck-mode)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 ;;;-----------------------------------------------------------------------------
 
 
