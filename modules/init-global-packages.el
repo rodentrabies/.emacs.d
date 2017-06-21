@@ -84,6 +84,35 @@
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
 
+;; custom hooks
+
+
+(defun prog-mode-add-custom-keys ()
+  ;; comment fence generator
+  (local-set-key
+   (kbd "C-c C-f")
+   (lambda ()
+     (interactive)
+     ;; insert upper fence
+     (comment-dwim nil)
+     (delete-backward-char 1)
+     (insert-char ?- (- 80 (current-column)))
+     (newline-and-indent)
+     ;; insert lower fence
+     (newline-and-indent)
+     (comment-dwim nil)
+     (delete-backward-char 1)
+     (insert-char ?- (- 80 (current-column)))
+     ;; insert description line
+     (previous-line)
+     (comment-dwim nil))))
+
+(defun prog-mode-custom-hook ()
+  (prog-mode-add-custom-keys))
+
+(add-hook 'prog-mode-hook 'prog-mode-custom-hook)
+
+
 
 
 (provide 'init-global-packages)
