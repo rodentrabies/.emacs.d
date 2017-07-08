@@ -13,10 +13,13 @@
 (el-get-bundle smartparens)
 (el-get-bundle flycheck)
 (el-get-bundle! py-autopep8)
+(el-get-bundle jedi-core)
 
 (defun python-mode-custom-hook ()
   (smartparens-mode 1)
-  (highlight-indentation-mode 0))
+  (highlight-indentation-mode 0)
+  (add-to-list 'company-backends 'company-jedi)
+  (company-mode 1))
 
 (add-hook 'python-mode-hook 'python-mode-custom-hook)
 (add-hook 'elpy-mode-hook 'flycheck-mode)
@@ -132,14 +135,17 @@
   :url "https://github.com/fbergroth/emacs-rustfmt.git")
 
 (setq racer-rust-src-path
-      "/home/whythat/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+      (concat
+       (getenv "HOME")
+       "/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib"
+       "/src/rust/src"))
 
 ;; hooks
 (add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'rust-mode-hook 'smartparens-mode)
-;; (add-hook 'rust-mode-hook 'rustfmt-enable-on-save)
+(add-hook 'rust-mode-hook #'electric-pair-mode)
+;; (add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
 
+(add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 
 (setq company-tooltip-align-annotations t)
@@ -169,18 +175,22 @@
 ;;; c++ mode
 ;;;-----------------------------------------------------------------------------
 (require 'electric)
-(el-get-bundle! cmake-ide)
+
+(el-get-bundle company-irony)
+(el-get-bundle irony-mode)
 
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
+(add-to-list 'company-backends 'company-irony)
 
-(defun cpp-setup ()
+
+(defun cpp-custom-mode-hook ()
   (setq c-default-style "k&r"
         c-basic-offset 4)
   (electric-pair-mode 1)
-  (cmake-ide-setup)
-  (electric-pair-mode 1))
+  (irony-mode 1))
 
-(add-hook 'c++-mode-hook 'cpp-setup)
+(add-hook 'c++-mode-hook 'cpp-custom-mode-hook)
+(add-hook 'c-mode-hook 'cpp-custom-mode-hook)
 ;;;-----------------------------------------------------------------------------
 
 
