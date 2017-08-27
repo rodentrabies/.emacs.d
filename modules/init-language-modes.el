@@ -4,6 +4,7 @@
 
 
 
+
 ;;;-----------------------------------------------------------------------------
 ;;; python
 ;;;-----------------------------------------------------------------------------
@@ -172,25 +173,39 @@
 
 
 ;;;-----------------------------------------------------------------------------
-;;; c++ mode
+;;; c/c++ mode
 ;;;-----------------------------------------------------------------------------
+(el-get-bundle helm)
+(el-get-bundle! helm-gtags)
+
+(require 'helm-config)
 (require 'electric)
 
-(el-get-bundle company-irony)
-(el-get-bundle irony-mode)
+(setq
+ helm-gtags-ignore-case           t
+ helm-gtags-auto-update           t
+ helm-gtags-use-input-at-cursor   t
+ helm-gtags-pulse-at-cursor       t
+ helm-gtags-prefix-key            "\C-cg"
+ helm-gtags-suggested-key-mapping t)
 
-(add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
-(add-to-list 'company-backends 'company-irony)
+(defun c-custom-mode-hook ()
+  (setq c-default-style "k&r")
+  (setq c-basic-offset 4)
 
-
-(defun cpp-custom-mode-hook ()
-  (setq c-default-style "k&r"
-        c-basic-offset 4)
   (electric-pair-mode 1)
-  (irony-mode 1))
+  (helm-mode 1)
+  (helm-gtags-mode 1)
 
-(add-hook 'c++-mode-hook 'cpp-custom-mode-hook)
-(add-hook 'c-mode-hook 'cpp-custom-mode-hook)
+  ;; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+  ;; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+  ;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+  ;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
+
+(add-hook 'c++-mode-hook 'c-custom-mode-hook)
+(add-hook 'c-mode-hook 'c-custom-mode-hook)
 ;;;-----------------------------------------------------------------------------
 
 
@@ -200,7 +215,6 @@
 ;;; misc
 ;;;-----------------------------------------------------------------------------
 (el-get-bundle protobuf-mode)
-
 (el-get-bundle magit)
 ;;;-----------------------------------------------------------------------------
 
