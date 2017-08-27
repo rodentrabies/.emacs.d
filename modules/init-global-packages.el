@@ -78,6 +78,9 @@
 (el-get-bundle rainbow-delimiters
   (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode))
 
+(el-get-bundle! highlight-symbol
+  (setq highlight-symbol-on-navigation-p t))
+
 (require 'paren)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
@@ -108,7 +111,8 @@
      (comment-dwim nil))))
 
 (defun prog-mode-custom-hook ()
-  (prog-mode-add-custom-keys))
+  (prog-mode-add-custom-keys)
+  (highlight-symbol-mode 1))
 
 (add-hook 'prog-mode-hook 'prog-mode-custom-hook)
 
