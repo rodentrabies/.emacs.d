@@ -147,6 +147,9 @@
 ;; (add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
 
 (add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'rust-mode-hook 'smartparens-mode)
+;; (add-hook 'rust-mode-hook 'rustfmt-enable-on-save)
+
 (add-hook 'racer-mode-hook #'company-mode)
 
 (setq company-tooltip-align-annotations t)
@@ -175,34 +178,67 @@
 ;;;-----------------------------------------------------------------------------
 ;;; c/c++ mode
 ;;;-----------------------------------------------------------------------------
-(el-get-bundle helm)
-(el-get-bundle! helm-gtags)
 
-(require 'helm-config)
+;; -----------------------------------------------------------------------------
+;; Helm
+;; (el-get-bundle helm)
+;; (el-get-bundle! helm-gtags)
+;; (require 'helm-config)
+;; -----------------------------------------------------------------------------
+;; ggtags
+(el-get-bundle! ggtags)
+;; -----------------------------------------------------------------------------
+
+;; (el-get-bundle! cc-mode)
+;; (require 'semantic)
+
 (require 'electric)
-
-(setq
- helm-gtags-ignore-case           t
- helm-gtags-auto-update           t
- helm-gtags-use-input-at-cursor   t
- helm-gtags-pulse-at-cursor       t
- helm-gtags-prefix-key            "\C-cg"
- helm-gtags-suggested-key-mapping t)
 
 (defun c-custom-mode-hook ()
   (setq c-default-style "k&r")
   (setq c-basic-offset 4)
 
   (electric-pair-mode 1)
-  (helm-mode 1)
-  (helm-gtags-mode 1)
+
+  ;; ---------------------------------------------------------------------------
+  ;; Navigation
+  ;; ---------------------------------------------------------------------------
+  ;; Helm
+  ;; (helm-mode 1)
+  ;; (helm-gtags-mode 1)
+
+  ;; (setq
+  ;;  helm-gtags-ignore-case           t
+  ;;  helm-gtags-auto-update           t
+  ;;  helm-gtags-use-input-at-cursor   t
+  ;;  helm-gtags-pulse-at-cursor       t
+  ;;  helm-gtags-prefix-key            "\C-cg"
+  ;;  helm-gtags-suggested-key-mapping t)
 
   ;; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
   ;; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
   ;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
   ;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
-  (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-  (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack))
+  ;; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+  ;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+  ;; ---------------------------------------------------------------------------
+  ;; ggtags
+  (ggtags-mode 1)
+  
+  (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+  (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+  (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+  (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+  (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+  (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+  (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+  ;; ---------------------------------------------------------------------------
+
+  ;; (semantic-mode 1)
+  ;; (global-semanticdb-minor-mode 1)
+  ;; (global-semantic-idle-scheduler-mode 1)
+  )
 
 (add-hook 'c++-mode-hook 'c-custom-mode-hook)
 (add-hook 'c-mode-hook 'c-custom-mode-hook)
@@ -215,6 +251,7 @@
 ;;; misc
 ;;;-----------------------------------------------------------------------------
 (el-get-bundle protobuf-mode)
+
 (el-get-bundle magit)
 ;;;-----------------------------------------------------------------------------
 
