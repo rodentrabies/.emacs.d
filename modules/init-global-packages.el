@@ -15,27 +15,44 @@
 ;;   (add-to-list 'custom-theme-load-path default-directory)
 ;;   (load-theme 'deep-thought t))
 
-(el-get-bundle lime-theme
-  :url "https://github.com/yurizhykin/emacs-lime-theme.git"
-  (add-to-list 'custom-theme-load-path default-directory)
-  (load-theme 'lime t))
+;; (el-get-bundle lime-theme
+;;   :url "https://github.com/yurizhykin/emacs-lime-theme.git"
+;;   (add-to-list 'custom-theme-load-path default-directory)
+;;   (load-theme 'lime t))
+
+(el-get-bundle! autothemer)
+
+(el-get-bundle! dash)
+
+(el-get-bundle! kaolin-themes
+  :url "https://github.com/ogdenwebb/emacs-kaolin-themes.git"
+  (load-theme 'kaolin-aurora t))
+
+(el-get-bundle! telephone-line
+  (setq
+   telephone-line-primary-left-separator 'telephone-line-cos-left
+   telephone-line-secondary-left-separator 'telephone-line-cos-hollow-left
+   telephone-line-primary-right-separator 'telephone-line-cos-right
+   telephone-line-secondary-right-separator 'telephone-line-cos-hollow-right)
+  (telephone-line-mode 1))
+
 
 ;; powerline
-(el-get-bundle! powerline
-  :url "https://github.com/milkypostman/emacs-powerline.git")
+;; (el-get-bundle! powerline
+;;   :url "https://github.com/milkypostman/emacs-powerline.git")
 
-(el-get-bundle! airline-themes
-  :depends (evil)
-  (load-theme 'airline-luna t)
-  (setq powerline-utf-8-separator-left        #xe0b0
-        powerline-utf-8-separator-right       #xe0b2
-        airline-utf-glyph-separator-left      #xe0b0
-        airline-utf-glyph-separator-right     #xe0b2
-        airline-utf-glyph-subseparator-left   #xe0b1
-        airline-utf-glyph-subseparator-right  #xe0b3
-        airline-utf-glyph-branch              #xe0a0
-        airline-utf-glyph-readonly            #xe0a2
-        airline-utf-glyph-linenumber          #xe0a1))
+;; (el-get-bundle! airline-themes
+;;   :depends (evil)
+;;   (load-theme 'airline-luna t)
+;;   (setq powerline-utf-8-separator-left        #xe0b0
+;;         powerline-utf-8-separator-right       #xe0b2
+;;         airline-utf-glyph-separator-left      #xe0b0
+;;         airline-utf-glyph-separator-right     #xe0b2
+;;         airline-utf-glyph-subseparator-left   #xe0b1
+;;         airline-utf-glyph-subseparator-right  #xe0b3
+;;         airline-utf-glyph-branch              #xe0a0
+;;         airline-utf-glyph-readonly            #xe0a2
+;;         airline-utf-glyph-linenumber          #xe0a1))
 
 
 ;; font settings
