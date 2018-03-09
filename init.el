@@ -27,6 +27,12 @@
 (scroll-bar-mode -1) ; no scrollbar
 (setq inhibit-splash-screen t) ; no splash screen
 
+;; font settings
+(setq )
+(add-to-list 'default-frame-alist '(font . "Monaco-10:weight=bold"))
+(setq-default indent-tabs-mode nil)
+(set-frame-font "Monaco-10:weight=bold" nil t)
+
 ;; metainformation
 (add-hook
  'prog-mode-hook
@@ -74,3 +80,4 @@
  '(company-ghc-show-info t)
  '(package-selected-packages (quote (helm ghc racer company queue minimap))))
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

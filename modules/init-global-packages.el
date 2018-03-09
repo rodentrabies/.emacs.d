@@ -36,28 +36,14 @@
    telephone-line-secondary-right-separator 'telephone-line-cos-hollow-right)
   (telephone-line-mode 1))
 
+;; (el-get-bundle s)
+;; (el-get-bundle ov)
+;; (el-get-bundle projectile)
 
-;; powerline
-;; (el-get-bundle! powerline
-;;   :url "https://github.com/milkypostman/emacs-powerline.git")
-
-;; (el-get-bundle! airline-themes
-;;   :depends (evil)
-;;   (load-theme 'airline-luna t)
-;;   (setq powerline-utf-8-separator-left        #xe0b0
-;;         powerline-utf-8-separator-right       #xe0b2
-;;         airline-utf-glyph-separator-left      #xe0b0
-;;         airline-utf-glyph-separator-right     #xe0b2
-;;         airline-utf-glyph-subseparator-left   #xe0b1
-;;         airline-utf-glyph-subseparator-right  #xe0b3
-;;         airline-utf-glyph-branch              #xe0a0
-;;         airline-utf-glyph-readonly            #xe0a2
-;;         airline-utf-glyph-linenumber          #xe0a1))
-
-
-;; font settings
-(setq-default indent-tabs-mode nil)
-(set-frame-font "Monaco-10:weight=bold" nil t)
+;; (el-get-bundle! sidebar
+;;   :url "https://github.com/sebastiencs/sidebar.el.git"
+;;   (global-set-key (kbd "C-x C-f") 'sidebar-open)
+;;   (global-set-key (kbd "C-x C-a") 'sidebar-buffers-open))
 
 ;; fireplace :)
 (el-get-bundle fireplace
@@ -72,7 +58,7 @@
 (el-get-bundle minimap)
 (add-hook 'minimap-sb-mode-hook
           (lambda ()
-            (set-face-background 'minimap-active-region-background "dark olive green")
+            ;; (set-face-background 'minimap-active-region-background "dark olive green")
             (setq mode-line-format nil)))
 
 (el-get-bundle markdown-mode)
@@ -96,7 +82,11 @@
   (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode))
 
 (el-get-bundle! highlight-symbol
-  (setq highlight-symbol-on-navigation-p t))
+  (setq highlight-symbol-on-navigation-p t)
+  (global-set-key (kbd "C-c j") 'highlight-symbol)
+  ;; (global-set-key (kbd "C-c C-j") 'highlight-symbol-next)
+  ;; (global-set-key (kbd "C-c M-j") 'highlight-symbol-prev)
+  (global-set-key (kbd "C-c M-j") 'highlight-symbol-query-replace))
 
 (require 'paren)
 (show-paren-mode 1)
