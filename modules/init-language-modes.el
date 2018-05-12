@@ -16,7 +16,9 @@
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (setq reftex-plug-into-AUCTeX t))
+  (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq-default fill-column 80))
 ;;;-----------------------------------------------------------------------------
 
 
@@ -41,6 +43,16 @@
 (add-hook 'python-mode-hook 'python-mode-custom-hook)
 (add-hook 'elpy-mode-hook 'flycheck-mode)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+;;;-----------------------------------------------------------------------------
+
+
+
+
+;;;-----------------------------------------------------------------------------
+;;; scala
+;;;-----------------------------------------------------------------------------
+(el-get-bundle! ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 ;;;-----------------------------------------------------------------------------
 
 
@@ -154,7 +166,7 @@
 (setq racer-rust-src-path
       (concat
        (getenv "HOME")
-       "/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib"
+       "/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib"
        "/src/rust/src"))
 
 ;; hooks

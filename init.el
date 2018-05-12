@@ -22,23 +22,18 @@
 ;;;-----------------------------------------------------------------------------
 ;;; initialize general settings
 ;;;-----------------------------------------------------------------------------
-(tool-bar-mode -1) ; no toolbar
-(menu-bar-mode -1) ; no menu
-(scroll-bar-mode -1) ; no scrollbar
+(tool-bar-mode -1)             ; no toolbar
+(menu-bar-mode -1)             ; no menu
+(scroll-bar-mode -1)           ; no scrollbar
 (setq inhibit-splash-screen t) ; no splash screen
+(global-linum-mode 1)          ; line numbering
+(column-number-mode 1)         ; column numbers
 
 ;; font settings
 (setq )
 (add-to-list 'default-frame-alist '(font . "Monaco-10:weight=bold"))
 (setq-default indent-tabs-mode nil)
 (set-frame-font "Monaco-10:weight=bold" nil t)
-
-;; metainformation
-(add-hook
- 'prog-mode-hook
- '(lambda ()
-    (linum-mode 1)
-    (column-number-mode 1)))
 
 ;; dynamic abbreviation 
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
@@ -78,6 +73,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-ghc-show-info t)
- '(package-selected-packages (quote (helm ghc racer company queue minimap))))
+ '(package-selected-packages
+   (quote
+    (kaolin-themes helm ghc racer company queue minimap))))
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
