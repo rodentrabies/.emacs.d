@@ -30,7 +30,6 @@
 (column-number-mode 1)         ; column numbers
 
 ;; font settings
-(setq )
 (add-to-list 'default-frame-alist '(font . "Monaco-10:weight=bold"))
 (setq-default indent-tabs-mode nil)
 (set-frame-font "Monaco-10:weight=bold" nil t)

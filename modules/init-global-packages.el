@@ -4,26 +4,8 @@
 
 
 ;; themes
-
-;; (el-get-bundle gruvbox-theme
-;;   :url "https://github.com/greduan/emacs-theme-gruvbox.git"
-;;   (add-to-list 'custom-theme-load-path default-directory)
-;;   (load-theme 'gruvbox t))
-
-;; (el-get-bundle deep-thought-theme
-;;   :url "https://github.com/yurizhykin/emacs-deep-thought-theme.git"
-;;   (add-to-list 'custom-theme-load-path default-directory)
-;;   (load-theme 'deep-thought t))
-
-;; (el-get-bundle lime-theme
-;;   :url "https://github.com/yurizhykin/emacs-lime-theme.git"
-;;   (add-to-list 'custom-theme-load-path default-directory)
-;;   (load-theme 'lime t))
-
 (el-get-bundle! autothemer)
-
 (el-get-bundle! dash)
-
 (el-get-bundle! kaolin-themes
   :url "https://github.com/ogdenwebb/emacs-kaolin-themes.git"
   (load-theme 'kaolin-aurora t))
@@ -36,14 +18,9 @@
    telephone-line-secondary-right-separator 'telephone-line-cos-hollow-right)
   (telephone-line-mode 1))
 
-;; (el-get-bundle s)
-;; (el-get-bundle ov)
-;; (el-get-bundle projectile)
-
-;; (el-get-bundle! sidebar
-;;   :url "https://github.com/sebastiencs/sidebar.el.git"
-;;   (global-set-key (kbd "C-x C-f") 'sidebar-open)
-;;   (global-set-key (kbd "C-x C-a") 'sidebar-buffers-open))
+;; remove invasive modeline strings
+(el-get-bundle! delight
+  (delight '((slime-mode nil slime))))
 
 ;; fireplace :)
 (el-get-bundle fireplace
