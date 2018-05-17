@@ -8,17 +8,30 @@
 ;;;-----------------------------------------------------------------------------
 ;;; tex
 ;;;-----------------------------------------------------------------------------
+
 (el-get-bundle auctex
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
+  (setq reftex-plug-into-AUCTeX t)
+  (setq-default fill-column 80)
   (setq-default TeX-master nil)
   (add-hook 'LaTeX-mode-hook 'visual-line-mode)
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-  (setq reftex-plug-into-AUCTeX t)
-  (setq-default fill-column 80))
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               ;; enable Ukrainian input method but fallback to default
+               (set-input-method 'ukrainian-computer)
+               (toggle-input-method)))
+  (add-hook 'LaTeX-mode-hook
+            '(lambda ()
+               ;; set different face for LaTeX buffer (for cyrillic input)
+               (interactive)
+               (setq buffer-face-mode-face
+                     '(:family "DejaVu Sans Mono" :height 100 :width normal))
+               (buffer-face-mode))))
 ;;;-----------------------------------------------------------------------------
 
 
