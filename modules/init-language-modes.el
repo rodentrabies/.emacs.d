@@ -8,30 +8,34 @@
 ;;;-----------------------------------------------------------------------------
 ;;; tex
 ;;;-----------------------------------------------------------------------------
-
 (el-get-bundle auctex
   (setq TeX-auto-save t)
   (setq TeX-parse-self t)
+  (setq TeX-save-query nil)
   (setq reftex-plug-into-AUCTeX t)
   (setq-default fill-column 80)
   (setq-default TeX-master nil)
-  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
-  (add-hook 'LaTeX-mode-hook
-            '(lambda ()
-               ;; enable Ukrainian input method but fallback to default
-               (set-input-method 'ukrainian-computer)
-               (toggle-input-method)))
-  (add-hook 'LaTeX-mode-hook
-            '(lambda ()
-               ;; set different face for LaTeX buffer (for cyrillic input)
-               (interactive)
-               (setq buffer-face-mode-face
-                     '(:family "DejaVu Sans Mono" :height 100 :width normal))
-               (buffer-face-mode))))
+  (add-hook 'LaTeX-mode-hook 'latex-mode-setup))
+
+(defun latex-mode-setup ()
+  ;; basic settings
+  (visual-line-mode)
+  (flyspell-mode)
+  (LaTeX-math-mode)
+  (turn-on-reftex)
+  (auto-fill-mode)
+
+  ;; enable Ukrainian input method but fallback to default
+  (set-input-method 'ukrainian-computer)
+  (toggle-input-method)
+
+  ;; set different face for LaTeX buffer (for cyrillic input)
+  (interactive)
+  (setq buffer-face-mode-face '(:family "DejaVu Sans Mono" :height 100 :width normal))
+  (buffer-face-mode)
+
+  ;; compile document on save
+  (add-hook 'after-save-hook (lambda () (TeX-command-run-all nil)) nil t))
 ;;;-----------------------------------------------------------------------------
 
 
