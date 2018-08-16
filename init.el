@@ -28,6 +28,7 @@
 (setq inhibit-splash-screen t) ; no splash screen
 (global-linum-mode 1)          ; line numbering
 (column-number-mode 1)         ; column numbers
+(which-function-mode -1)       ; do not show enclosing functions
 
 ;; font settings
 (add-to-list 'default-frame-alist '(font . "Monaco-10:weight=bold"))

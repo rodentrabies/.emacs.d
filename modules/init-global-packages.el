@@ -31,6 +31,10 @@
 (setq ido-default-buffer-method 'selected-window)
 (ido-mode t)
 
+(el-get-bundle magit
+  (global-set-key (kbd "C-c g") 'magit-status)
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+
 ;; minimap
 (el-get-bundle minimap)
 (add-hook 'minimap-sb-mode-hook
